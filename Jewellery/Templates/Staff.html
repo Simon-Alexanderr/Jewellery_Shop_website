@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jewelry Shop Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        nav {
+            background-color: #f2f2f2;
+            padding: 10px;
+        }
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+        .product-list {
+            margin: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table th, table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        table th {
+            background-color: #f2f2f2;
+        }
+        .edit-button, .delete-button {
+            padding: 6px 10px;
+            border: none;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+        }
+        .edit-button:hover, .delete-button:hover {
+            background-color: #0056b3;
+        }
+        .profile-box {
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 10px;
+            width: 200px;
+            text-align: center;
+            margin: 20px auto;
+        }
+        .profile-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin: 0 auto 10px;
+            display: block;
+        }
+        .user-name {
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Jewelry Shop Dashboard</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="/AddProd/">Add Products</a></li>
+            <li><a href="#">Customers</a></li>
+            <li style="text-align: right;">
+                <div class="profile-box">
+                    <h3>{{cr_profile.name}}</h3>
+                </div>
+            </li>
+            <!-- Add more links as needed -->
+        </ul>
+    </nav>
+    <form action="">
+        {% csrf_token %}
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Product Name</th>
+                <th>Quantity</th>
+                <th>Price</th>
+              
+            </tr>
+            
+            {% for i in product %}
+            <tr>
+                <td>{{i.id}}</td>
+                <td>{{i.name}}</td>
+                <td>{{i.qty}}</td>
+                <td>{{i.price}}<span> USD</span></td>
+                <td><a href="{% url 'UpProd' i.id %}" >Update</a></td>
+
+                
+            </tr>
+            {% endfor %}
+        </table>
+    </form>
+</body>
+</html>
